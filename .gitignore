@@ -35,3 +35,6 @@ local.properties
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# credentials
+/app/src/main/java/com/example/dhruv/aws_test/Credentials.java

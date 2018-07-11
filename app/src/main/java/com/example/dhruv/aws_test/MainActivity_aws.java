@@ -39,8 +39,8 @@ import java.io.OutputStream;
 
 public class MainActivity_aws extends AppCompatActivity implements View.OnClickListener {
 
-    private final String KEY = "AKIAJRMP6TZFSGATXQIQ";
-    private final String SECRET = "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";
+    private final String KEY = Credentials.KEY;
+    private final String SECRET = Credentials.SECRET;
 
     private AmazonS3Client s3Client;
     private BasicAWSCredentials credentials;
