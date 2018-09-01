@@ -57,9 +57,8 @@ public class GPS_Service extends Service {
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         uid = prefs.getString("uid", "");
         final Location location=new Location(LocationManager.GPS_PROVIDER);
-        location.setLatitude(12.9345d);
-        Log.d("Meee", "changed");
-        location.setLongitude(77.5345d);
+        lng=location.getLongitude();
+        lat=location.getLatitude();
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
