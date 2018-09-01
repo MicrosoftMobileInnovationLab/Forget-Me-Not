@@ -2,6 +2,8 @@ package com.example.mlabsystem2.dialerfinal;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -11,6 +13,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -141,10 +144,28 @@ public class GPS_Service extends Service {
 
 // schedule the task to run starting now and then every hour...
       //  timer.schedule (hourlyTask, 0l, 1000*1*60);
+        if (android.os.Build.VERSION.SDK_INT <26 ) {
+            // only for gingerbread and newer versions
+            showForegroundNotification("GPS SERVICE IS RUNNING");
+        }
+        else{
+            if (android.os.Build.VERSION.SDK_INT >=26) {
+                int notifyID = 1;
+                String CHANNEL_ID = "my_channel_01";// The id of the channel.
+                CharSequence name = "USE PHONE";// The user-visible name of the channel.
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+// Create a notification and set the notification channel.
+                Notification notification = new Notification.Builder(GPS_Service.this)
+                        .setContentTitle("GPS RUNNING")
+                        .setContentText("TRACKING LOCATION.")
+                        .setSmallIcon(R.drawable.ic_action_add)
+                        .setChannelId(CHANNEL_ID)
+                        .build();
+                startForeground(NOTIFICATION_ID,notification);
+            }
+        }
 
-
-
-     showForegroundNotification("GPS SERVICE IS RUNNING");
 
         //ALERT IS SHOWN IF PATIENT IS 4m AWAY FROM CURRENT LOCATION(HOME COORDINATES)
 
