@@ -123,7 +123,9 @@ public class GPS_Service extends Service {
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
 
         //noinspection MissingPermission
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 5, listener);
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,60000,10,listener);
+
 
 //        final Timer timer = new Timer ();
 //        TimerTask hourlyTask = new TimerTask () {
