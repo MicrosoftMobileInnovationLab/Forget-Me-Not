@@ -211,6 +211,6 @@ public class PatientHome extends AppCompatActivity implements View.OnClickListen
         handler.removeCallbacks(r);
     }
     public void startHandler() {
-        handler.postDelayed(r, 1*60*1000); //for 5 minutes
+        handler.postDelayed(r, 480*60*1000); //for 5 minutes
     }
 }
